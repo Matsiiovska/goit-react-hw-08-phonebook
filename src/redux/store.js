@@ -32,8 +32,8 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer, // Редюсер для керування станом контактів
-    filter: filterReducer, // Редюсер для керування станом фільтра
+    contacts: contactsReducer, 
+    filter: filterReducer, 
     auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware,

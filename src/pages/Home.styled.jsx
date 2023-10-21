@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,5 +11,5 @@ export const Title = styled.h1`
   font-weight: 900;
   font-size: 48;
   text-align: center;
-  color: #f08080;
+  color: brown;
 `;

@@ -1,17 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-// Імпорт асинхронних Thunk-дій fetchContacts, addContacts, deleteContacts з файлу 'operations'
 import {
   fetchContacts,
   addContacts,
   deleteContacts,
 } from 'redux/contacts/operations';
 
-// Визначення функції getActions, яка повертає умову isAnyOf для зазначеного типу дії
 const getActions = type =>
   isAnyOf(fetchContacts[type], addContacts[type], deleteContacts[type]);
 
-// Початковий стан для slice contactsSlice
 const initialState = { items: [], isLoading: false, error: null };
 const contactsSlice = createSlice({
   name: 'contacts',

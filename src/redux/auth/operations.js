@@ -1,17 +1,14 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
-axios.defaults.baseURL = 'https://phonebook-db-2lk4.onrender.com/';
 
 const setAuthHeader = token => {
-  // Встановлення заголовка авторизації у вихідних параметрах запиту
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 const clearAuthHeader = () => {
-  // Очищення заголовка авторизації
   axios.defaults.headers.common.Authorization = '';
 };
 
@@ -19,11 +16,10 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      // Виконання POST-запиту на реєстрацію користувача
       const res = await axios.post('/users/register', credentials); //signup
       console.log(res.data);
-      setAuthHeader(res.data.token); // Встановлення отриманого токена авторизації у заголовок
-      return res.data; // Повернення даних з відповіді сервера
+      setAuthHeader(res.data.token); 
+      return res.data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message); // Обробка помилки із викликом rejectWithValue
     }
