@@ -5,7 +5,7 @@ export default function Register() {
   return (
     <>
       <title>Registration</title>
-      <RegisterForm /> {/* Відображення форми для реєстрації */}
+      <RegisterForm /> 
     </>
   );
 }

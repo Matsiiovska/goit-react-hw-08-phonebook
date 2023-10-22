@@ -21,7 +21,7 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token); 
       return res.data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message); // Обробка помилки із викликом rejectWithValue
+      return thunkAPI.rejectWithValue(error.message); 
     }
   }
 );
@@ -30,23 +30,21 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      // Виконання POST-запиту на авторизацію користувача
       const res = await axios.post('/users/login', credentials);
-      setAuthHeader(res.data.token); // Встановлення отриманого токена авторизації у заголовок
-      return res.data; // Повернення даних з відповіді сервера
+      setAuthHeader(res.data.token); 
+      return res.data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message); // Обробка помилки із викликом rejectWithValue
+      return thunkAPI.rejectWithValue(error.message); 
     }
   }
 );
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    // Виконання POST-запиту на виход користувача
     await axios.post('/users/logout');
-    clearAuthHeader(); // Очищення заголовка авторизації
+    clearAuthHeader(); 
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message); // Обробка помилки із викликом rejectWithValue
+    return thunkAPI.rejectWithValue(error.message); 
   }
 });
 
@@ -57,15 +55,15 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user'); // Помилка, якщо токен не збережений у стані
+      return thunkAPI.rejectWithValue('Unable to fetch user'); 
     }
 
     try {
-      setAuthHeader(persistedToken); // Встановлення збереженого токена авторизації у заголовок
-      const res = await axios.get('/users/current'); // Виконання GET-запиту для отримання інформації про користувача
-      return res.data; // Повернення даних з відповіді сервера
+      setAuthHeader(persistedToken); 
+      const res = await axios.get('/users/current'); 
+      return res.data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message); // Обробка помилки із викликом rejectWithValue
+      return thunkAPI.rejectWithValue(error.message); 
     }
   }
 );
